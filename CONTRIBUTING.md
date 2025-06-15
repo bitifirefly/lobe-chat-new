@@ -1,6 +1,6 @@
 # Lobe Chat - Contributing Guide 🌟
 
-We're thrilled that you want to contribute to Lobe Chat, the future of communication! 😄
+We're thrilled that you want to contribute to Lobe Chat, the future of communication!   😄
 
 Lobe Chat is an open-source project, and we welcome your collaboration. Before you jump in, let's make sure you're all set to contribute effectively and have loads of fun along the way!
 
