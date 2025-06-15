@@ -4,7 +4,7 @@
 
 ### [Version 1.52.16](https://github.com/lobehub/lobe-chat/compare/v1.52.15...v1.52.16)
 
-<sup>Released on **2025-02-11**</sup>
+<sup>Released on **2025-02-11**</sup> 
 
 #### 💄 Styles
 
