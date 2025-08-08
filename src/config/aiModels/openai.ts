@@ -1,13 +1,114 @@
+import { ModelParamsSchema } from '@/libs/standard-parameters';
 import {
   AIChatModelCard,
   AIEmbeddingModelCard,
+  AIImageModelCard,
   AIRealtimeModelCard,
   AISTTModelCard,
   AITTSModelCard,
-  AIText2ImageModelCard,
 } from '@/types/aiModel';
 
+export const gptImage1ParamsSchema: ModelParamsSchema = {
+  imageUrls: { default: [] },
+  prompt: { default: '' },
+  size: {
+    default: 'auto',
+    enum: ['auto', '1024x1024', '1536x1024', '1024x1536'],
+  },
+};
+
 export const openaiChatModels: AIChatModelCard[] = [
+  {
+    abilities: {
+      functionCall: true,
+      imageOutput: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      '跨领域编码和代理任务的最佳模型。GPT-5 在准确性、速度、推理、上下文识别、结构化思维和问题解决方面实现了飞跃。',
+    displayName: 'GPT-5',
+    enabled: true,
+    id: 'gpt-5',
+    maxOutput: 128_000,
+    pricing: {
+      cachedInput: 0.13,
+      input: 1.25,
+      output: 10,
+    },
+    releasedAt: '2025-08-07',
+    settings: {
+      extendParams: ['reasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      search: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      '更快、更经济高效的 GPT-5 版本，适用于明确定义的任务。在保持高质量输出的同时，提供更快的响应速度。',
+    displayName: 'GPT-5 mini',
+    enabled: true,
+    id: 'gpt-5-mini',
+    maxOutput: 128_000,
+    pricing: {
+      cachedInput: 0.03,
+      input: 0.25,
+      output: 2,
+    },
+    releasedAt: '2025-08-07',
+    settings: {
+      extendParams: ['reasoningEffort'],
+      searchImpl: 'params',
+    },
+    type: 'chat',
+  },
+  {
+    abilities: {
+      functionCall: true,
+      reasoning: true,
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description: '最快、最经济高效的 GPT-5 版本。非常适合需要快速响应且成本敏感的应用场景。',
+    displayName: 'GPT-5 nano',
+    id: 'gpt-5-nano',
+    maxOutput: 128_000,
+    pricing: {
+      cachedInput: 0.01,
+      input: 0.05,
+      output: 0.4,
+    },
+    releasedAt: '2025-08-07',
+    type: 'chat',
+  },
+  {
+    abilities: {
+      vision: true,
+    },
+    contextWindowTokens: 400_000,
+    description:
+      'ChatGPT 中使用的 GPT-5 模型。结合了强大的语言理解与生成能力，适合对话式交互应用。',
+    displayName: 'GPT-5 Chat',
+    enabled: true,
+    id: 'gpt-5-chat-latest',
+    maxOutput: 128_000,
+    pricing: {
+      cachedInput: 0.13,
+      input: 1.25,
+      output: 10,
+    },
+    releasedAt: '2025-08-07',
+    type: 'chat',
+  },
   {
     abilities: {
       functionCall: true,
@@ -251,7 +352,6 @@ export const openaiChatModels: AIChatModelCard[] = [
     contextWindowTokens: 1_047_576,
     description: 'GPT-4.1 是我们用于复杂任务的旗舰模型。它非常适合跨领域解决问题。',
     displayName: 'GPT-4.1',
-    enabled: true,
     id: 'gpt-4.1',
     maxOutput: 32_768,
     pricing: {
@@ -275,7 +375,6 @@ export const openaiChatModels: AIChatModelCard[] = [
     description:
       'GPT-4.1 mini 提供了智能、速度和成本之间的平衡，使其成为许多用例中有吸引力的模型。',
     displayName: 'GPT-4.1 mini',
-    enabled: true,
     id: 'gpt-4.1-mini',
     maxOutput: 32_768,
     pricing: {
@@ -506,7 +605,6 @@ export const openaiChatModels: AIChatModelCard[] = [
     description:
       'ChatGPT-4o 是一款动态模型，实时更新以保持当前最新版本。它结合了强大的语言理解与生成能力，适合于大规模应用场景，包括客户服务、教育和技术支持。',
     displayName: 'ChatGPT-4o',
-    enabled: true,
     id: 'chatgpt-4o-latest',
     pricing: {
       input: 5,
@@ -691,7 +789,8 @@ export const openaiChatModels: AIChatModelCard[] = [
       vision: true,
     },
     contextWindowTokens: 200_000,
-    description: 'codex-mini-latest 是 o4-mini 的微调版本，专门用于 Codex CLI。对于直接通过 API 使用，我们推荐从 gpt-4.1 开始。',
+    description:
+      'codex-mini-latest 是 o4-mini 的微调版本，专门用于 Codex CLI。对于直接通过 API 使用，我们推荐从 gpt-4.1 开始。',
     displayName: 'Codex mini',
     id: 'codex-mini-latest',
     maxOutput: 100_000,
@@ -713,7 +812,8 @@ export const openaiChatModels: AIChatModelCard[] = [
       vision: true,
     },
     contextWindowTokens: 8192,
-    description: 'computer-use-preview 模型是专为“计算机使用工具”设计的专用模型，经过训练以理解并执行计算机相关任务。',
+    description:
+      'computer-use-preview 模型是专为“计算机使用工具”设计的专用模型，经过训练以理解并执行计算机相关任务。',
     displayName: 'Computer Use Preview',
     id: 'computer-use-preview',
     maxOutput: 1024,
@@ -804,7 +904,8 @@ export const openaiSTTModels: AISTTModelCard[] = [
   },
   {
     contextWindowTokens: 16_000,
-    description: 'GPT-4o Transcribe 是一种使用 GPT-4o 转录音频的语音转文本模型。与原始 Whisper 模型相比，它提高了单词错误率，并提高了语言识别和准确性。使用它来获得更准确的转录。',
+    description:
+      'GPT-4o Transcribe 是一种使用 GPT-4o 转录音频的语音转文本模型。与原始 Whisper 模型相比，它提高了单词错误率，并提高了语言识别和准确性。使用它来获得更准确的转录。',
     displayName: 'GPT-4o Transcribe',
     id: 'gpt-4o-transcribe',
     maxOutput: 2000,
@@ -816,7 +917,8 @@ export const openaiSTTModels: AISTTModelCard[] = [
   },
   {
     contextWindowTokens: 16_000,
-    description: 'GPT-4o Mini Transcribe 是一种使用 GPT-4o 转录音频的语音转文本模型。与原始 Whisper 模型相比，它提高了单词错误率，并提高了语言识别和准确性。使用它来获得更准确的转录。',
+    description:
+      'GPT-4o Mini Transcribe 是一种使用 GPT-4o 转录音频的语音转文本模型。与原始 Whisper 模型相比，它提高了单词错误率，并提高了语言识别和准确性。使用它来获得更准确的转录。',
     displayName: 'GPT-4o Mini Transcribe',
     id: 'gpt-4o-mini-transcribe',
     maxOutput: 2000,
@@ -829,12 +931,28 @@ export const openaiSTTModels: AISTTModelCard[] = [
 ];
 
 // 图像生成模型
-export const openaiImageModels: AIText2ImageModelCard[] = [
+export const openaiImageModels: AIImageModelCard[] = [
+  // https://platform.openai.com/docs/models/gpt-image-1
+  {
+    description: 'ChatGPT 原生多模态图片生成模型',
+    displayName: 'GPT Image 1',
+    enabled: true,
+    id: 'gpt-image-1',
+    parameters: gptImage1ParamsSchema,
+    type: 'image',
+  },
   {
     description:
       '最新的 DALL·E 模型，于2023年11月发布。支持更真实、准确的图像生成，具有更强的细节表现力',
     displayName: 'DALL·E 3',
     id: 'dall-e-3',
+    parameters: {
+      prompt: { default: '' },
+      size: {
+        default: '1024x1024',
+        enum: ['1024x1024', '1792x1024', '1024x1792'],
+      },
+    },
     pricing: {
       hd: 0.08,
       standard: 0.04,
@@ -846,6 +964,14 @@ export const openaiImageModels: AIText2ImageModelCard[] = [
     description: '第二代 DALL·E 模型，支持更真实、准确的图像生成，分辨率是第一代的4倍',
     displayName: 'DALL·E 2',
     id: 'dall-e-2',
+    parameters: {
+      imageUrl: { default: null },
+      prompt: { default: '' },
+      size: {
+        default: '1024x1024',
+        enum: ['256x256', '512x512', '1024x1024'],
+      },
+    },
     pricing: {
       input: 0.02, // $0.020 per image (1024×1024)
     },

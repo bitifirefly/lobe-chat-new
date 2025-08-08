@@ -9,8 +9,7 @@ export interface OpenAIModelCard {
   id: string;
 }
 
-const prunePrefixes = ['o1', 'o3', 'o4', 'codex', 'computer-use'];
-
+const prunePrefixes = ['o1', 'o3', 'o4', 'codex', 'computer-use', 'gpt-5'];
 const oaiSearchContextSize = process.env.OPENAI_SEARCH_CONTEXT_SIZE; // low, medium, high
 
 export const LobeOpenAI = createOpenAICompatibleRuntime({
@@ -79,9 +78,9 @@ export const LobeOpenAI = createOpenAICompatibleRuntime({
         return pruneReasoningPayload({
           ...rest,
           model,
-          reasoning: payload.reasoning ? 
-            { ...payload.reasoning, summary: 'auto' } : 
-            { summary: 'auto' },
+          reasoning: payload.reasoning
+            ? { ...payload.reasoning, summary: 'auto' }
+            : { summary: 'auto' },
           stream: payload.stream ?? true,
           tools: openaiTools as any,
           // computer-use series must set truncation as auto
