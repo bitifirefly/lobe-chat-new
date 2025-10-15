@@ -11,6 +11,14 @@ const hotkey: HotkeyI18nTranslations & {
     desc: '清空当前会话的消息和上传的文件',
     title: '清空会话消息',
   },
+  deleteAndRegenerateMessage: {
+    desc: '删除最后一条消息并重新生成',
+    title: '删除并重新生成',
+  },
+  deleteLastMessage: {
+    desc: '删除最后一条消息',
+    title: '删除最后一条消息',
+  },
   desktop: {
     openSettings: {
       desc: '打开应用设置页面',
@@ -24,6 +32,10 @@ const hotkey: HotkeyI18nTranslations & {
   editMessage: {
     desc: '通过按住 Alt 并双击消息进入编辑模式',
     title: '编辑消息',
+  },
+  navigateToChat: {
+    desc: '切换至会话标签并进入随便聊聊',
+    title: '切换至默认会话',
   },
   openChatSettings: {
     desc: '查看和修改当前会话的设置',
